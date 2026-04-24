@@ -102,16 +102,10 @@ If the build exits with a non-zero code or prints errors, stop and report the er
 ### Step 5 — Deploy to Railway
 
 ```bash
-cd "/Users/teresa/claude class/deal-pulse-dashboard" && railway up --detach 2>&1
+cd "/Users/teresa/claude class/deal-pulse-dashboard" && railway up --service deal-pulse-dashboard --detach 2>&1
 ```
 
 `--detach` returns immediately after upload without waiting for the build to finish on Railway's side. Railway will build and deploy the app in the background.
-
-After the upload completes, run:
-
-```bash
-cd "/Users/teresa/claude class/deal-pulse-dashboard" && railway status 2>&1
-```
 
 ### Step 6 — Report
 
@@ -122,7 +116,7 @@ Output a summary in this format:
 
 **Data as of**: <generated_at formatted as human-readable>
 **Railway project**: <project name from railway status>
-**URL**: <deployment URL>
+**URL**: https://deal-pulse-dashboard-production.up.railway.app
 
 ### Pipeline snapshot
 - 🔥 Sign-Ready: <n>
@@ -146,4 +140,5 @@ Output a summary in this format:
 | Build fails with type error | Fix the type error in the dashboard source, then retry build |
 | `railway up` fails with auth error | Tell user to run `! railway login` |
 | `railway up` fails with no project | Tell user to run `! railway link` |
+| `railway up` says "Multiple services found" | Always pass `--service deal-pulse-dashboard` flag |
 | Railway deployment URL not yet available | Provide the Railway dashboard URL: https://railway.app/dashboard |
